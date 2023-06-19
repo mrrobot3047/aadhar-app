@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/aadhar-app/static/css/main.56067fce.css",
+    "main.js": "/aadhar-app/static/js/main.35de0950.js",
+    "static/js/235.fbf9d81f.chunk.js": "/aadhar-app/static/js/235.fbf9d81f.chunk.js",
+    "static/js/787.29b97ef7.chunk.js": "/aadhar-app/static/js/787.29b97ef7.chunk.js",
+    "index.html": "/aadhar-app/index.html",
+    "main.56067fce.css.map": "/aadhar-app/static/css/main.56067fce.css.map",
+    "main.35de0950.js.map": "/aadhar-app/static/js/main.35de0950.js.map",
+    "235.fbf9d81f.chunk.js.map": "/aadhar-app/static/js/235.fbf9d81f.chunk.js.map",
+    "787.29b97ef7.chunk.js.map": "/aadhar-app/static/js/787.29b97ef7.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.56067fce.css",
+    "static/js/main.35de0950.js"
+  ]
+}
