@@ -1,24 +1,45 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import {Routes,Route} from 'react-router-dom';
+import Loginpages from './components/Loginpages';
+import AadharPage from './components/AadharPage';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
+  const [isLoggedIn, setLoggedIn] = useState(localStorage.getItem('isLoggedIn') === 'true');
+  const [isAdmin, setAdmin] = useState(false);
+  const navigate = useNavigate()
+
+  const handleLogin = async (email, password) => {
+    try {
+      const response = await axios.post('https://arun.test.ppm.wtf/login', { email, password });
+      console.log(response)
+      if (response.data.token) {
+        setLoggedIn(true);
+        setAdmin(email === 'admin');
+        localStorage.setItem('isLoggedIn', true);
+        localStorage.setItem('token', response.data.token);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setAdmin(false);
+    localStorage.setItem('isLoggedIn', false);
+    localStorage.removeItem('token');
+    navigate('/')
+
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <Routes>
+        <Route path="/" element={<Loginpages handleLogin={handleLogin}/>}/>
+        <Route path="/aadhar" element={<AadharPage isAdmin={isAdmin} handleLogout={handleLogout} />} />
+      </Routes>
+    </>
   );
 }
 
